@@ -1,15 +1,17 @@
 package model.taxType.taxesCalculation;
 
-import java.util.List;
-
 import model.Product;
 import model.taxType.TaxFees;
 
 public class Taxes10Precent implements TaxFees {
 
 	@Override
-	public void preformTaxes(List<Product> products) {
-		// TODO Auto-generated method stub
+	public void preformTaxes(Product product) {
+		double taxes = 0;
+		if (product != null) {
+			taxes = (product.getNetPrice() * 10) / 100;
+
+		}
 
 	}
 
