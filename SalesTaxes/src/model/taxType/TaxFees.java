@@ -4,6 +4,9 @@ import model.Product;
 
 public interface TaxFees {
 
-	public void preformTaxes(Product product);
+	public double taxes(Product product);
+
+	public double grossPriceCalculation(Product product);
+
 
 }

@@ -6,12 +6,11 @@ public class Product {
 	private double netPrice;
 	private double grossPrice;
 	private double taxFees;
-	private boolean taxFree = false;
+
 
 	public Product(String info, double netPrice) {
 		this.info = info;
 		this.netPrice = netPrice;
-		this.taxFree = isTaxFree();
 	}
 
 
@@ -29,14 +28,6 @@ public class Product {
 
 	public void setTaxFees(double taxFees) {
 		this.taxFees = taxFees;
-	}
-
-	public boolean isTaxFree() {
-		return taxFree;
-	}
-
-	public void setTaxFree(boolean taxFree) {
-		this.taxFree = taxFree;
 	}
 
 	public String getInfo() {
