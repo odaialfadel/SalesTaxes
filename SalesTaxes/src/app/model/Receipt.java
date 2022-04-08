@@ -44,7 +44,8 @@ public class Receipt {
 		for (Product product : productList) {
 			info += product.getQuantity() + " " + product.getInfo() + ": " + product.getGrossPrice() + "\n";
 		}
-		return info + "Sales Taxes: " + SalesTaxes + "\nTotal: " + totalPrice;
+		return info + "Sales Taxes: " + Utilites.round2DigitAfterComma(SalesTaxes) + "\nTotal: "
+				+ Utilites.round2DigitAfterComma(totalPrice);
 	}
 
 }

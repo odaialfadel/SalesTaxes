@@ -24,12 +24,12 @@ class TestCalculateClass {
 		Calculate better = new Calculate();
 
 		for (Product product : products) {
-			better.preform(product);
+			product.setTaxFees(better.preform(product).taxes(product));
+			product.setGrossPrice(better.preform(product).grossPriceCalculation(product));
 		}
 		assertEquals(12.49, products.get(0).getGrossPrice(), 0);
 		assertEquals(16.49, products.get(1).getGrossPrice(), 0);
 		assertEquals(0.85, products.get(2).getGrossPrice(), 0);
-
 	}
 
 	@Test
@@ -41,12 +41,11 @@ class TestCalculateClass {
 		Calculate better = new Calculate();
 
 		for (Product product : products) {
-			better.preform(product);
+			product.setTaxFees(better.preform(product).taxes(product));
+			product.setGrossPrice(better.preform(product).grossPriceCalculation(product));
 		}
 		assertEquals(10.50, products.get(0).getGrossPrice(), 0);
 		assertEquals(54.65, products.get(1).getGrossPrice(), 0);
-
-
 	}
 
 	@Test
@@ -60,17 +59,13 @@ class TestCalculateClass {
 		Calculate better = new Calculate();
 
 		for (Product product : products) {
-			better.preform(product);
+			product.setTaxFees(better.preform(product).taxes(product));
+			product.setGrossPrice(better.preform(product).grossPriceCalculation(product));
 		}
-
 		assertEquals(32.19, products.get(0).getGrossPrice(), 0);
 		assertEquals(20.89, products.get(1).getGrossPrice(), 0);
 		assertEquals(9.75, products.get(2).getGrossPrice(), 0);
 		assertEquals(11.85, products.get(3).getGrossPrice(), 0);
-
-
 	}
-
-
 
 }

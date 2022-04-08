@@ -26,13 +26,7 @@ public class TheView extends JFrame {
 
 
 
-	public JComboBox<String> getComboProductList() {
-		return comboProductList;
-	}
 
-	public void setComboProductList(JComboBox<String> comboProductList) {
-		this.comboProductList = comboProductList;
-	}
 
 	/**
 	 * Create the application.
@@ -166,5 +160,9 @@ public class TheView extends JFrame {
 
 	public JButton getDeleteProducktButton() {
 		return deleteProducktButton;
+	}
+
+	public JComboBox<String> getComboProductList() {
+		return comboProductList;
 	}
 }

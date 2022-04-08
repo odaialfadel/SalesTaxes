@@ -41,30 +41,8 @@ public class Controller {
 
 
 
-	private void deleteProduct() {
-		if (view.getComboProductList().getSelectedIndex() != -1
-				|| view.getComboProductList().getSelectedItem() != null) {
-//			// remove from the List
-			String productInfo = String.valueOf(view.getComboProductList().getSelectedItem());
-			model.getProductList().remove(findProductByInfo(productInfo));
-			// remove from the combobox
 
-			//remove from TextArea
-//			view.getReceiptTextArea().setText(view.getReceiptTextArea().getText().replaceAll(
-//					findProductByInfo(productInfo).getInfo() + ": " + findProductByInfo(productInfo).getGrossPrice(),
-//					""));
-			view.getComboProductList().removeItem(view.getComboProductList().getSelectedItem());
-		}
-	}
 
-	private Product findProductByInfo(String info) {
-		for (Product product : model.getProductList()) {
-			if (info.equals(product.getInfo())) {
-				return product;
-			}
-		}
-		return null;
-	}
 
 	private void openFolder() {
 		try {
@@ -101,6 +79,9 @@ public class Controller {
 				System.out.println(model.getReceipt().receiptToString());
 
 				fos.write(model.getReceipt().receiptToString().getBytes());
+
+				model.getProductList().clear();
+
 				fos.flush();
 				fos.close();
 
@@ -112,8 +93,9 @@ public class Controller {
 
 	}
 
-	private String showInTextArea(String infoData) {
-		return view.getReceiptTextArea().getText() + infoData + "\n";
+	// help method to show or delete product from Display
+	private String productOnDisplay(Product product) {
+		return product.getQuantity() + " " + product.getInfo() + ": " + product.getGrossPrice() + "\n";
 	}
 
 	private void addProductToTextArea() {
@@ -122,24 +104,59 @@ public class Controller {
 
 		double enteredPrice = Utilites.round2DigitAfterComma(Double.parseDouble(view.getProductPrice().getText()));
 		int quantity = Integer.parseInt(view.getQuantityTextField().getText());
-		double grossPrice = 0;
-		model.getProductList().add(new Product(view.getProductInfoField().getText(), enteredPrice));
-		for (Product product : model.getProductList()) {
-			model.getCalculater().preform(product);
-			product.setQuantity(quantity);
-			grossPrice = product.getGrossPrice() * quantity;
-			Utilites.round2DigitAfterComma(grossPrice);
-		}
 
-		view.getReceiptTextArea().setText(showInTextArea(
-				view.getQuantityTextField().getText() + " " + view.getProductInfoField().getText() + ": "
-						+ grossPrice));
+		String productInfo = view.getProductInfoField().getText();
+		Product productToAdd = new Product(productInfo, enteredPrice);
+		
+		double taxFees = model.getCalculater().preform(productToAdd).taxes(productToAdd);
+		double grossPrice = model.getCalculater().preform(productToAdd).grossPriceCalculation(productToAdd);
 
-		view.getComboProductList().addItem(view.getProductInfoField().getText());
+		Product product = new Product(productInfo, enteredPrice, grossPrice, taxFees, quantity);
+		
+		// add Product to the List
+		model.getProductList().add(product);
+
+		// show Product on Display
+		view.getReceiptTextArea().setText(view.getReceiptTextArea().getText() + productOnDisplay(product));
+
+		// add productinfo to the Combobox
+		view.getComboProductList().addItem(productInfo);
+		// System.err.println(product.getInfo() + ": " + product.getNetPrice() + ", " +
+		// product.getGrossPrice());
+
 		view.getProductInfoField().setText("");
 		view.getProductPrice().setText("");
 		view.getQuantityTextField().setText("");
 	}
+	}
+
+	private void deleteProduct() {
+
+		if (view.getComboProductList().getSelectedIndex() != -1
+				|| view.getComboProductList().getSelectedItem() != null) {
+
+			// remove from the List
+			String productInfo = String.valueOf(view.getComboProductList().getSelectedItem());
+			Product product = findProductByInfo(productInfo);
+			model.getProductList().remove(findProductByInfo(productInfo));
+
+			// remove from the combobox
+			view.getComboProductList().removeItem(view.getComboProductList().getSelectedItem());
+
+			// delete Product from Display
+			view.getReceiptTextArea()
+					.setText(view.getReceiptTextArea().getText().replaceAll(productOnDisplay(product), ""));
+		}
+	}
+
+	// to delete specifec Product from the List
+	private Product findProductByInfo(String info) {
+		for (Product product : model.getProductList()) {
+			if (info.equals(product.getInfo())) {
+				return product;
+			}
+		}
+		return null;
 	}
 
 }

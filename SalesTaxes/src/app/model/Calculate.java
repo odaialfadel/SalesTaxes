@@ -11,24 +11,24 @@ import app.model.taxType.taxesCalculation.TaxesNormalGoods;
 public class Calculate {
 
 
-	public void preform(Product product) {
-		TaxFees taxes = null;
+	public TaxFees preform(Product product) {
+		//TaxFees taxes = null;
 		if (product != null) {
 
 			if (product.getInfo().contains("import") && isExept(product)) {
-				taxes = new TaxesImportedExemptGoods();
+				return new TaxesImportedExemptGoods();
 			} else if (product.getInfo().contains("import") && !isExept(product)) {
-				taxes = new TaxesImportedNormalGoods();
-		} else if (isExept(product)) {
-			taxes = new TaxFree();
+				return new TaxesImportedNormalGoods();
+			} else if (isExept(product)) {
+				return new TaxFree();
 			} else {
-			taxes = new TaxesNormalGoods();
+				return new TaxesNormalGoods();
 			}
-		product.setTaxFees(taxes.taxes(product));
-		product.setGrossPrice(taxes.grossPriceCalculation(product));
-
+//			product.setTaxFees(taxes.taxes(product));
+//			product.setGrossPrice(taxes.grossPriceCalculation(product));
+		}
+		return null;
 	}
-}
 
 public double totalCostProducts(List<Product> productList) {
 		double totalCosts = 0.00;

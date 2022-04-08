@@ -17,9 +17,9 @@ class TestUtilitesClass {
 		double p2 = Utilites.round(1.529);
 		double p3 = Utilites.round(1.419);
 
-		assertEquals(1.50, p, 0);
+		assertEquals(1.55, p, 0);
 		assertEquals(1.55, p2, 0);
-		assertEquals(1.40, p3, 0);
+		assertEquals(1.45, p3, 0);
 	}
 
 	@Test

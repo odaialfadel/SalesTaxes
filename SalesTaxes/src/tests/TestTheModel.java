@@ -16,8 +16,7 @@ class TestTheModel {
 
 	@Test
 	public void test_totalPrice() {
-		// model.calculater.getListOfProducts().add(new Product("headache pills",
-		// 9.75));
+
 		List<Product> products = new ArrayList<Product>();
 		products.add(new Product("headache pills", 9.99));
 		products.add(new Product("imported perfume", 47.50));
@@ -26,10 +25,8 @@ class TestTheModel {
 
 		double total = 0;
 		for (Product product : products) {
-			model.getCalculater().preform(product);
-			total += product.getGrossPrice();
+			total += model.getCalculater().preform(product).grossPriceCalculation(product);
 		}
-		// total = model.getCalculater().totalCostProducts(products);
 
 		assertEquals(81.13, total, 0);
 	}
