@@ -5,11 +5,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import model.Product;
-import model.Receipt;
-import model.TheModel;
-import model.Utilites;
-import view.TheView;
+import app.model.Product;
+import app.model.Receipt;
+import app.model.TheModel;
+import app.model.Utilites;
+import app.view.TheView;
 
 public class Controller {
 
@@ -128,6 +128,7 @@ public class Controller {
 			model.getCalculater().preform(product);
 			product.setQuantity(quantity);
 			grossPrice = product.getGrossPrice() * quantity;
+			Utilites.round2DigitAfterComma(grossPrice);
 		}
 
 		view.getReceiptTextArea().setText(showInTextArea(

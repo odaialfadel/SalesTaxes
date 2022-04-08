@@ -7,35 +7,70 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import model.Calculate;
-import model.Product;
+import app.model.Calculate;
+import app.model.Product;
 
 class TestCalculateClass {
 
 
 
 	@Test
-	public void test_totalTaxes() {
+	public void test_input1() {
 		List<Product> products = new ArrayList<Product>();
-		products.add(new Product("imported pills", 10.00));
-		products.add(new Product("imported perfume", 47.50));
+		products.add(new Product("book ", 12.49));
 		products.add(new Product("music CD", 14.99));
+		products.add(new Product("chocolate bar", 0.85));
+
 		Calculate better = new Calculate();
-		double b = 0;
+
 		for (Product product : products) {
 			better.preform(product);
-
 		}
-		b = products.get(0).getGrossPrice();
-		System.out.println(b);
+		assertEquals(12.49, products.get(0).getGrossPrice(), 0);
+		assertEquals(16.49, products.get(1).getGrossPrice(), 0);
+		assertEquals(0.85, products.get(2).getGrossPrice(), 0);
 
-		// double f = better.totalCostProducts(products);
-		// double b = better.totalTaxesCollected(products);
-		assertEquals(10.50, b, 0);
-		// assertEquals(81.13, f, 0);
+	}
 
+	@Test
+	public void test_input2() {
+		List<Product> products = new ArrayList<Product>();
+		products.add(new Product("imported box of chocolates", 10.00));
+		products.add(new Product("imported bottle of perfume", 47.50));
+
+		Calculate better = new Calculate();
+
+		for (Product product : products) {
+			better.preform(product);
+		}
+		assertEquals(10.50, products.get(0).getGrossPrice(), 0);
+		assertEquals(54.65, products.get(1).getGrossPrice(), 0);
 
 
 	}
+
+	@Test
+	public void test_input3() {
+		List<Product> products = new ArrayList<Product>();
+		products.add(new Product("imported bottle of perfume", 27.99));
+		products.add(new Product("bottle of perfume", 18.99));
+		products.add(new Product("packet of headache", 9.75));
+		products.add(new Product("box of imported chocolates ", 11.25));
+
+		Calculate better = new Calculate();
+
+		for (Product product : products) {
+			better.preform(product);
+		}
+
+		assertEquals(32.19, products.get(0).getGrossPrice(), 0);
+		assertEquals(20.89, products.get(1).getGrossPrice(), 0);
+		assertEquals(9.75, products.get(2).getGrossPrice(), 0);
+		assertEquals(11.85, products.get(3).getGrossPrice(), 0);
+
+
+	}
+
+
 
 }

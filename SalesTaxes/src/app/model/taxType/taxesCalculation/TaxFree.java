@@ -1,8 +1,8 @@
-package model.taxType.taxesCalculation;
+package app.model.taxType.taxesCalculation;
 
-import model.Product;
-import model.Utilites;
-import model.taxType.TaxFees;
+import app.model.Product;
+import app.model.Utilites;
+import app.model.taxType.TaxFees;
 
 public class TaxFree implements TaxFees {
 

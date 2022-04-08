@@ -7,8 +7,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import model.Product;
-import model.TheModel;
+import app.model.Product;
+import app.model.TheModel;
 
 class TestTheModel {
 

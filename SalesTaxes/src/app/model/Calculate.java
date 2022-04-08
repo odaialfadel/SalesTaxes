@@ -1,12 +1,12 @@
-package model;
+package app.model;
 
 import java.util.List;
 
-import model.taxType.TaxFees;
-import model.taxType.taxesCalculation.TaxFree;
-import model.taxType.taxesCalculation.TaxesImportedExemptGoods;
-import model.taxType.taxesCalculation.TaxesImportedNormalGoods;
-import model.taxType.taxesCalculation.TaxesNormalGoods;
+import app.model.taxType.TaxFees;
+import app.model.taxType.taxesCalculation.TaxFree;
+import app.model.taxType.taxesCalculation.TaxesImportedExemptGoods;
+import app.model.taxType.taxesCalculation.TaxesImportedNormalGoods;
+import app.model.taxType.taxesCalculation.TaxesNormalGoods;
 
 public class Calculate {
 
@@ -47,7 +47,7 @@ public double totalCostProducts(List<Product> productList) {
 	}
 
 	private boolean isExept(Product product) {
-		String[] exemptProduct = { "book", "chocolate", "pills" };
+		String[] exemptProduct = { "book", "chocolate", "pills", "headache" };
 		for (int i = 0; i < exemptProduct.length; i++) {
 			if (product.getInfo().contains(exemptProduct[i])) {
 				return true;

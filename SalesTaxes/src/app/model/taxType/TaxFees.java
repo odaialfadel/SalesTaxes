@@ -1,6 +1,6 @@
-package model.taxType;
+package app.model.taxType;
 
-import model.Product;
+import app.model.Product;
 
 public interface TaxFees {
 

@@ -5,8 +5,8 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 
 import app.controller.Controller;
-import model.TheModel;
-import view.TheView;
+import app.model.TheModel;
+import app.view.TheView;
 
 
 public class Start {
