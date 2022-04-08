@@ -22,11 +22,20 @@ public class TheView extends JFrame {
 	private JTextArea receiptTextArea;
 
 	private JComboBox<String> comboProductList;
+	private JLabel salesTaxesLabel, totalLabel;
 
 
 
 
 
+
+	public JLabel getSalesTaxesLabel() {
+		return salesTaxesLabel;
+	}
+
+	public JLabel getTotalLabel() {
+		return totalLabel;
+	}
 
 	/**
 	 * Create the application.
@@ -40,7 +49,7 @@ public class TheView extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 467, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.WHITE);
@@ -65,7 +74,7 @@ public class TheView extends JFrame {
 		viewtPanel.setForeground(Color.GRAY);
 		viewtPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		viewtPanel.setBackground(Color.LIGHT_GRAY);
-		viewtPanel.setBounds(275, 11, 149, 239);
+		viewtPanel.setBounds(275, 11, 166, 239);
 		getContentPane().add(viewtPanel);
 
 		JLabel receiptView = new JLabel("Receipt");
@@ -76,7 +85,7 @@ public class TheView extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(null);
 		scrollPane.setOpaque(false);
-		scrollPane.setBounds(10, 34, 129, 194);
+		scrollPane.setBounds(10, 34, 146, 145);
 		viewtPanel.add(scrollPane);
 
 		receiptTextArea = new JTextArea();
@@ -89,6 +98,22 @@ public class TheView extends JFrame {
 		receiptTextArea.setLineWrap(true);
 		receiptTextArea.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		receiptTextArea.setEditable(false);
+
+		JLabel label = new JLabel("Sales Taxes:");
+		label.setBounds(10, 190, 76, 14);
+		viewtPanel.add(label);
+
+		JLabel label2 = new JLabel("Total:");
+		label2.setBounds(10, 214, 76, 14);
+		viewtPanel.add(label2);
+
+		salesTaxesLabel = new JLabel("00.00");
+		salesTaxesLabel.setBounds(93, 190, 63, 14);
+		viewtPanel.add(salesTaxesLabel);
+
+		totalLabel = new JLabel("00.00");
+		totalLabel.setBounds(93, 214, 63, 14);
+		viewtPanel.add(totalLabel);
 
 		printReceiptButton = new JButton("Print Receipt");
 		printReceiptButton.setBounds(28, 178, 114, 23);

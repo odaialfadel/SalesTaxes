@@ -81,6 +81,8 @@ public class Controller {
 				fos.write(model.getReceipt().receiptToString().getBytes());
 
 				model.getProductList().clear();
+				view.getSalesTaxesLabel().setText("");
+				view.getTotalLabel().setText("");
 
 				fos.flush();
 				fos.close();
@@ -111,6 +113,7 @@ public class Controller {
 		double taxFees = model.getCalculater().preform(productToAdd).taxes(productToAdd);
 		double grossPrice = model.getCalculater().preform(productToAdd).grossPriceCalculation(productToAdd);
 
+
 		Product product = new Product(productInfo, enteredPrice, grossPrice, taxFees, quantity);
 		
 		// add Product to the List
@@ -118,7 +121,19 @@ public class Controller {
 
 		// show Product on Display
 		view.getReceiptTextArea().setText(view.getReceiptTextArea().getText() + productOnDisplay(product));
-
+		
+		// show tax collected and total price now on Display
+		double salesTaxes = 0;
+		double totalPrice = 0;
+		for (Product prod : model.getProductList()) {
+			salesTaxes += prod.getTaxFees();
+			totalPrice += prod.getGrossPrice();
+		}
+		salesTaxes = Utilites.round2DigitAfterComma(salesTaxes);
+		totalPrice = Utilites.round2DigitAfterComma(totalPrice);
+		view.getSalesTaxesLabel().setText(salesTaxes + "");
+		view.getTotalLabel().setText(totalPrice + "");
+		
 		// add productinfo to the Combobox
 		view.getComboProductList().addItem(productInfo);
 		// System.err.println(product.getInfo() + ": " + product.getNetPrice() + ", " +
@@ -146,6 +161,16 @@ public class Controller {
 			// delete Product from Display
 			view.getReceiptTextArea()
 					.setText(view.getReceiptTextArea().getText().replaceAll(productOnDisplay(product), ""));
+
+			// recalculate after deletion
+			double collectedTaxes = Double.parseDouble(view.getSalesTaxesLabel().getText()) - product.getTaxFees();
+			double totalNow = Double.parseDouble(view.getTotalLabel().getText()) - product.getGrossPrice();
+
+			collectedTaxes = Utilites.round2DigitAfterComma(collectedTaxes);
+			totalNow = Utilites.round2DigitAfterComma(totalNow);
+
+			view.getSalesTaxesLabel().setText(collectedTaxes + "");
+			view.getTotalLabel().setText(totalNow + "");
 		}
 	}
 
