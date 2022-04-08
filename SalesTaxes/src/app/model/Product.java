@@ -19,9 +19,9 @@ public class Product {
 			taxFees = taxFees * quantity;
 			grossPrice = grossPrice * quantity;
 
-			Utilites.round2DigitAfterComma(grossPrice);
+			grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 		}
-		Utilites.round2DigitAfterComma(grossPrice);
+		grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 		this.info = info;
 		this.netPrice = netPrice;
 		this.grossPrice = grossPrice;
@@ -38,9 +38,9 @@ public class Product {
 	public void setGrossPrice(double grossPrice) {
 		if (1 < getQuantity()) {
 			grossPrice = grossPrice * getQuantity();
-			Utilites.round2DigitAfterComma(grossPrice);
+			grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 		}
-		Utilites.round2DigitAfterComma(grossPrice);
+		grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 		this.grossPrice = grossPrice;
 	}
 

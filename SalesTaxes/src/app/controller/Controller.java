@@ -114,6 +114,7 @@ public class Controller {
 		double grossPrice = model.getCalculater().preform(productToAdd).grossPriceCalculation(productToAdd);
 
 
+
 		Product product = new Product(productInfo, enteredPrice, grossPrice, taxFees, quantity);
 		
 		// add Product to the List

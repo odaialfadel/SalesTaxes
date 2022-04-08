@@ -1,4 +1,3 @@
-54 afdwe: 2019.6
-54 wer: 2673.0
-Sales Taxes: 426.6
-Total: 4692.6
+23 sfs: 860.1999999999999
+Sales Taxes: 78.2
+Total: 860.2
