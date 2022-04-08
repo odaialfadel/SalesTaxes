@@ -6,14 +6,13 @@ public class Product {
 	private double netPrice;
 	private double grossPrice;
 	private double taxFees;
-	private double quantity;
+	private int quantity;
 
 
 	public Product(String info, double netPrice) {
 		this.info = info;
 		this.netPrice = netPrice;
 	}
-
 
 	public double getGrossPrice() {
 		return grossPrice;
@@ -39,11 +38,11 @@ public class Product {
 		return netPrice;
 	}
 
-	public double getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(double quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 

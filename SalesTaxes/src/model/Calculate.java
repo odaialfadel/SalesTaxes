@@ -11,9 +11,6 @@ import model.taxType.taxesCalculation.TaxesNormalGoods;
 public class Calculate {
 
 
-
-
-
 	public void preform(Product product) {
 		TaxFees taxes = null;
 		if (product != null) {
@@ -27,7 +24,6 @@ public class Calculate {
 			} else {
 			taxes = new TaxesNormalGoods();
 			}
-
 		product.setTaxFees(taxes.taxes(product));
 		product.setGrossPrice(taxes.grossPriceCalculation(product));
 

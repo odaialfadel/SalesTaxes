@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -16,11 +17,22 @@ import javax.swing.border.LineBorder;
 public class TheView extends JFrame {
 	private JTextField productInfoField, productPrice, quantityTextField;
 
-	private JButton addProductButtun, printReceiptButton;
+	private JButton addProductButtun, printReceiptButton, openReceiptFolder, deleteProducktButton;
+
 	private JTextArea receiptTextArea;
 
+	private JComboBox<String> comboProductList;
 
 
+
+
+	public JComboBox<String> getComboProductList() {
+		return comboProductList;
+	}
+
+	public void setComboProductList(JComboBox<String> comboProductList) {
+		this.comboProductList = comboProductList;
+	}
 
 	/**
 	 * Create the application.
@@ -50,7 +62,7 @@ public class TheView extends JFrame {
 		productPrice.setColumns(10);
 
 		addProductButtun = new JButton("add");
-		addProductButtun.setBounds(109, 103, 58, 20);
+		addProductButtun.setBounds(194, 95, 70, 20);
 		getContentPane().add(addProductButtun);
 
 		JPanel viewtPanel = new JPanel();
@@ -85,7 +97,7 @@ public class TheView extends JFrame {
 		receiptTextArea.setEditable(false);
 
 		printReceiptButton = new JButton("Print Receipt");
-		printReceiptButton.setBounds(83, 178, 114, 23);
+		printReceiptButton.setBounds(28, 178, 114, 23);
 		getContentPane().add(printReceiptButton);
 
 		JLabel productInfoLable = new JLabel("Enter your Product");
@@ -104,6 +116,18 @@ public class TheView extends JFrame {
 		quantityTextField.setBounds(207, 62, 46, 20);
 		getContentPane().add(quantityTextField);
 		quantityTextField.setColumns(10);
+
+		openReceiptFolder = new JButton("Receipt Folder");
+		openReceiptFolder.setBounds(152, 178, 101, 23);
+		getContentPane().add(openReceiptFolder);
+
+		deleteProducktButton = new JButton("Delete");
+		deleteProducktButton.setBounds(117, 95, 70, 20);
+		getContentPane().add(deleteProducktButton);
+
+		comboProductList = new JComboBox<String>();
+		comboProductList.setBounds(10, 93, 97, 22);
+		getContentPane().add(comboProductList);
 
 		setVisible(true);
 	}
@@ -128,6 +152,9 @@ public class TheView extends JFrame {
 		return addProductButtun;
 	}
 
+	public JButton getOpenReceiptFolder() {
+		return openReceiptFolder;
+	}
 
 	public JButton getPrintReceiptButton() {
 		return printReceiptButton;
@@ -135,5 +162,9 @@ public class TheView extends JFrame {
 
 	public JTextField getQuantityTextField() {
 		return quantityTextField;
+	}
+
+	public JButton getDeleteProducktButton() {
+		return deleteProducktButton;
 	}
 }

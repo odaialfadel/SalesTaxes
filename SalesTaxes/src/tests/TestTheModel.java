@@ -22,7 +22,7 @@ class TestTheModel {
 		products.add(new Product("headache pills", 9.99));
 		products.add(new Product("imported perfume", 47.50));
 		products.add(new Product("music CD", 14.99));
-		model.setProductList(products);
+		// model.setProductList(products);
 
 		double total = 0;
 		for (Product product : products) {
