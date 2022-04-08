@@ -1,14 +1,28 @@
 package app;
 
-import model.Product;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+
+import app.controller.Controller;
+import model.TheModel;
+import view.TheView;
+
 
 public class Start {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// zwecks testen
-		Product product = new Product("Book", 12.49);
-
+		SwingUtilities.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(null, e);
+				}
+		Controller controller = new Controller(new TheModel(), new TheView());
+		controller.initController();
+			}
+		});
 	}
 
 }

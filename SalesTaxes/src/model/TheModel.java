@@ -1,12 +1,28 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TheModel {
 
-	
-	List<Product> listOfProducts = new ArrayList<Product>();
+	private Calculate calculater;
+	private List<Product> productList;
+
+	public TheModel() {
+		this.calculater = new Calculate();
+	}
+
+	public Calculate getCalculater() {
+		return calculater;
+	}
+
+	public List<Product> getProductList() {
+		return productList;
+	}
+
+	public void setProductList(List<Product> productList) {
+		this.productList = productList;
+	}
+
 
 
 

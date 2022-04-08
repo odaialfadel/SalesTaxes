@@ -2,6 +2,9 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import model.Calculate;
@@ -9,18 +12,29 @@ import model.Product;
 
 class TestCalculateClass {
 
-	Calculate[] calcu = { new Calculate(new Product("headache pills", 9.75)),
-			new Calculate(new Product("imported perfume", 47.50)), new Calculate(new Product("music CD", 14.99)) };
-	@Test
-	public void test_createConfig() {
 
-		calcu[2].preform();
-		calcu[0].preform();
-		calcu[1].preform();
-		double f = calcu[1].product.getTaxFees();
-		assertEquals(1.50, calcu[2].product.getTaxFees(), 0);
-		assertEquals(0.00, calcu[0].product.getTaxFees(), 0);
-		assertEquals(7.15, calcu[1].product.getTaxFees(), 0);
+
+	@Test
+	public void test_totalTaxes() {
+		List<Product> products = new ArrayList<Product>();
+		products.add(new Product("imported pills", 10.00));
+		products.add(new Product("imported perfume", 47.50));
+		products.add(new Product("music CD", 14.99));
+		Calculate better = new Calculate();
+		double b = 0;
+		for (Product product : products) {
+			better.preform(product);
+
+		}
+		b = products.get(0).getGrossPrice();
+		System.out.println(b);
+
+		// double f = better.totalCostProducts(products);
+		// double b = better.totalTaxesCollected(products);
+		assertEquals(10.50, b, 0);
+		// assertEquals(81.13, f, 0);
+
+
 
 	}
 
