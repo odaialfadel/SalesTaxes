@@ -11,6 +11,8 @@ import app.view.TheView;
 
 public class Start {
 
+	private static Controller controller;
+
 	public static void main(String[] args) {
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
@@ -19,8 +21,8 @@ public class Start {
 				} catch (Exception e) {
 					JOptionPane.showMessageDialog(null, e);
 				}
-		Controller controller = new Controller(new TheModel(), new TheView());
-		controller.initController();
+				controller = new Controller(new TheModel(), new TheView());
+				controller.initController();
 			}
 		});
 	}

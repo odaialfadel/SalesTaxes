@@ -49,7 +49,7 @@ public class TheView extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 467, 300);
+		setBounds(100, 100, 516, 310);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		getContentPane().setBackground(Color.WHITE);
@@ -74,7 +74,7 @@ public class TheView extends JFrame {
 		viewtPanel.setForeground(Color.GRAY);
 		viewtPanel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		viewtPanel.setBackground(Color.LIGHT_GRAY);
-		viewtPanel.setBounds(275, 11, 166, 239);
+		viewtPanel.setBounds(275, 11, 215, 239);
 		getContentPane().add(viewtPanel);
 
 		JLabel receiptView = new JLabel("Receipt");
@@ -85,7 +85,7 @@ public class TheView extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportBorder(null);
 		scrollPane.setOpaque(false);
-		scrollPane.setBounds(10, 34, 146, 145);
+		scrollPane.setBounds(10, 34, 195, 145);
 		viewtPanel.add(scrollPane);
 
 		receiptTextArea = new JTextArea();
@@ -116,7 +116,7 @@ public class TheView extends JFrame {
 		viewtPanel.add(totalLabel);
 
 		printReceiptButton = new JButton("Print Receipt");
-		printReceiptButton.setBounds(28, 178, 114, 23);
+		printReceiptButton.setBounds(28, 193, 114, 23);
 		getContentPane().add(printReceiptButton);
 
 		JLabel productInfoLable = new JLabel("Enter your Product");
@@ -137,7 +137,7 @@ public class TheView extends JFrame {
 		quantityTextField.setColumns(10);
 
 		openReceiptFolder = new JButton("Receipt Folder");
-		openReceiptFolder.setBounds(152, 178, 101, 23);
+		openReceiptFolder.setBounds(152, 193, 101, 23);
 		getContentPane().add(openReceiptFolder);
 
 		deleteProducktButton = new JButton("Delete");

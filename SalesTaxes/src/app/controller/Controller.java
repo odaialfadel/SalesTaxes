@@ -38,12 +38,6 @@ public class Controller {
 	}
 
 
-
-
-
-
-
-
 	private void openFolder() {
 		try {
 		if (!MYFILE.exists()) {
@@ -81,8 +75,8 @@ public class Controller {
 				fos.write(model.getReceipt().receiptToString().getBytes());
 
 				model.getProductList().clear();
-				view.getSalesTaxesLabel().setText("");
-				view.getTotalLabel().setText("");
+				view.getSalesTaxesLabel().setText("00.00");
+				view.getTotalLabel().setText("00.00");
 
 				fos.flush();
 				fos.close();

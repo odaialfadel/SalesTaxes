@@ -10,22 +10,25 @@ import app.model.taxType.taxesCalculation.TaxesNormalGoods;
 
 public class Calculate {
 
+	TaxFees taxeFees;
 
 	public TaxFees preform(Product product) {
 		//TaxFees taxes = null;
 		if (product != null) {
 
 			if (product.getInfo().contains("import") && isExept(product)) {
-				return new TaxesImportedExemptGoods();
+				taxeFees = new TaxesImportedExemptGoods();
+				return taxeFees;
 			} else if (product.getInfo().contains("import") && !isExept(product)) {
-				return new TaxesImportedNormalGoods();
+				taxeFees = new TaxesImportedNormalGoods();
+				return taxeFees;
 			} else if (isExept(product)) {
-				return new TaxFree();
+				taxeFees = new TaxFree();
+				return taxeFees;
 			} else {
-				return new TaxesNormalGoods();
+				taxeFees = new TaxesNormalGoods();
+				return taxeFees;
 			}
-//			product.setTaxFees(taxes.taxes(product));
-//			product.setGrossPrice(taxes.grossPriceCalculation(product));
 		}
 		return null;
 	}

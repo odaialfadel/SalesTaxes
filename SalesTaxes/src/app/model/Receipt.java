@@ -1,11 +1,10 @@
 package app.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Receipt {
 
-	private List<Product> productList = new ArrayList<Product>();
+	private List<Product> productList;
 	private double SalesTaxes;
 	private double totalPrice;
 

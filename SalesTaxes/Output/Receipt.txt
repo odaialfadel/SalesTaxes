@@ -1,3 +1,5 @@
-23 sfs: 860.1999999999999
-Sales Taxes: 78.2
-Total: 860.2
+1 sdfsdf: 16.49
+1 chocolate bar: 0.85
+1 book: 12.49
+Sales Taxes: 1.5
+Total: 29.83
