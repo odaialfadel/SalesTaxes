@@ -15,11 +15,15 @@ public class Product {
 	}
 
 	public Product(String info, double netPrice, double grossPrice, double taxFees, int quantity) {
-		if (1 < quantity) {
+		if (1 <= quantity) {
 			taxFees = taxFees * quantity;
 			grossPrice = grossPrice * quantity;
 
 			grossPrice = Utilites.round2DigitAfterComma(grossPrice);
+		} else if (0 <= quantity) {
+			netPrice = 0;
+			taxFees = 0;
+			grossPrice = 0;
 		}
 		grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 		this.info = info;
@@ -36,7 +40,7 @@ public class Product {
 	}
 
 	public void setGrossPrice(double grossPrice) {
-		if (1 < getQuantity()) {
+		if (1 <= getQuantity()) {
 			grossPrice = grossPrice * getQuantity();
 			grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 		}

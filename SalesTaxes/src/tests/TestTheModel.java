@@ -36,15 +36,38 @@ class TestTheModel {
 	public void test_grossPrice() {
 
 		List<Product> products = new ArrayList<Product>();
-		double gross = 0;
+
 		products.add(new Product("somthing", 34.00));
+		products.add(new Product("soso", 15.42));
 		model.setProductList(products);
 		products.get(0)
 				.setGrossPrice(
 						model.getCalculater().preform(products.get(0)).grossPriceCalculation(products.get(0)) * 23);
-		gross = products.get(0).getGrossPrice();
 
-		assertEquals(860.20, gross, 0);
+		products.get(1).setGrossPrice(
+				model.getCalculater().preform(products.get(1)).grossPriceCalculation(products.get(1)) * 0);
+
+
+
+		assertEquals(860.20, products.get(0).getGrossPrice(), 0);
+		assertEquals(0, products.get(1).getGrossPrice(), 0);
+
+	}
+
+	@Test
+	public void test_whenQuantityZero() {
+
+		List<Product> products = new ArrayList<Product>();
+
+		products.add(new Product("somthing", 34.00, 50, 14, 0));
+		products.add(new Product("thing", 15.42, 14, 20, 1));
+		model.setProductList(products);
+
+		assertEquals(0, products.get(0).getGrossPrice(), 0);
+		assertEquals(14, products.get(1).getGrossPrice(), 0);
+		assertEquals(0, products.get(0).getNetPrice(), 0);
+		assertEquals(0, products.get(0).getTaxFees(), 0);
+
 	}
 
 }
