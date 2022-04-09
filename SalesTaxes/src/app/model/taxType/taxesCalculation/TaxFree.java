@@ -16,8 +16,9 @@ public class TaxFree implements TaxFees {
 
 	@Override
 	public double grossPriceCalculation(Product product) {
-		double grossPrice;
+
 		if (product != null) {
+			double grossPrice;
 			grossPrice = product.getNetPrice();
 			return Utilites.round2DigitAfterComma(grossPrice);
 		}

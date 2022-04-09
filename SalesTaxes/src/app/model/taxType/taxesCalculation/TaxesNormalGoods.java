@@ -8,8 +8,9 @@ public class TaxesNormalGoods implements TaxFees {
 
 	@Override
 	public double taxes(Product product) {
-		double taxes = 0.00;
+
 		if (product != null) {
+			double taxes;
 			taxes = (product.getNetPrice() * 10) / 100;
 			return Utilites.round(taxes);
 		}
@@ -18,8 +19,9 @@ public class TaxesNormalGoods implements TaxFees {
 
 	@Override
 	public double grossPriceCalculation(Product product) {
-		double grossPrice;
+
 		if (product != null) {
+			double grossPrice;
 			grossPrice = product.getNetPrice() + taxes(product);
 			return Utilites.round2DigitAfterComma(grossPrice);
 

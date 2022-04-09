@@ -31,7 +31,6 @@ class TestTheModel {
 	}
 
 	// before was 860.1999999999999 that is false! so i fixed it in product class
-	//
 	@Test
 	public void test_grossPrice() {
 
