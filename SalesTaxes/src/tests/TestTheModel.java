@@ -65,6 +65,7 @@ class TestTheModel {
 
 		assertEquals(0, products.get(0).getGrossPrice(), 0);
 		assertEquals(14, products.get(1).getGrossPrice(), 0);
+		assertEquals(15.42, products.get(1).getNetPrice(), 0);
 		assertEquals(0, products.get(0).getNetPrice(), 0);
 		assertEquals(0, products.get(0).getTaxFees(), 0);
 
