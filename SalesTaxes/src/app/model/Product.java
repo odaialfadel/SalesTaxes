@@ -25,11 +25,10 @@ public class Product {
 			taxFees = 0;
 			grossPrice = 0;
 		}
-		grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 		this.info = info;
 		this.netPrice = netPrice;
-		this.grossPrice = grossPrice;
-		this.taxFees = taxFees;
+		this.grossPrice = Utilites.round2DigitAfterComma(grossPrice);
+		this.taxFees = Utilites.round(taxFees);
 		this.quantity = quantity;
 
 
@@ -44,8 +43,7 @@ public class Product {
 			grossPrice = grossPrice * getQuantity();
 			grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 		}
-		grossPrice = Utilites.round2DigitAfterComma(grossPrice);
-		this.grossPrice = grossPrice;
+		this.grossPrice = Utilites.round2DigitAfterComma(grossPrice);
 	}
 
 	public double getTaxFees() {
@@ -53,10 +51,10 @@ public class Product {
 	}
 
 	public void setTaxFees(double taxFees) {
-		if (1 < getQuantity()) {
+		if (1 <= getQuantity()) {
 			taxFees = taxFees * getQuantity();
 		}
-		this.taxFees = taxFees;
+		this.taxFees = Utilites.round(taxFees);
 	}
 
 	public String getInfo() {

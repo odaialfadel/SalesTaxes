@@ -9,9 +9,10 @@ public class Receipt {
 	private double totalPrice;
 
 	public Receipt(List<Product> productList, double salesTaxes, double totalPrice) {
+
 		this.productList = productList;
-		SalesTaxes = salesTaxes;
-		this.totalPrice = totalPrice;
+		this.SalesTaxes = Utilites.round(salesTaxes);
+		this.totalPrice = Utilites.round2DigitAfterComma(totalPrice);
 	}
 
 	public List<Product> getProductList() {
@@ -27,7 +28,7 @@ public class Receipt {
 	}
 
 	public void setSalesTaxes(double salesTaxes) {
-		SalesTaxes = salesTaxes;
+		this.SalesTaxes = Utilites.round(salesTaxes);
 	}
 
 	public double getTotalPrice() {
@@ -35,7 +36,7 @@ public class Receipt {
 	}
 
 	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
+		this.totalPrice = Utilites.round2DigitAfterComma(totalPrice);
 	}
 
 	public String receiptToString() {
