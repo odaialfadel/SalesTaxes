@@ -15,6 +15,7 @@ public class TheModel {
 		this.calculater = new Calculate();
 	}
 
+
 	public void setReceipt(Receipt receipt) {
 		this.receipt = receipt;
 	}

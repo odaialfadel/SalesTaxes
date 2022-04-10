@@ -15,30 +15,15 @@ import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class TheView extends JFrame {
-	private JTextField productInfoField, productPrice, quantityTextField;
 
+	private JTextField productInfoField, productPriceField, quantityTextField;
 	private JButton addProductButtun, printReceiptButton, openReceiptFolder, deleteProducktButton;
-
 	private JTextArea receiptTextArea;
-
 	private JComboBox<String> comboProductList;
 	private JLabel salesTaxesLabel, totalLabel;
 
-
-
-
-
-
-	public JLabel getSalesTaxesLabel() {
-		return salesTaxesLabel;
-	}
-
-	public JLabel getTotalLabel() {
-		return totalLabel;
-	}
-
 	/**
-	 * Create the application.
+	 * Create the Window.
 	 */
 	public TheView() {
 
@@ -59,10 +44,10 @@ public class TheView extends JFrame {
 		getContentPane().add(productInfoField);
 		productInfoField.setColumns(10);
 
-		productPrice = new JTextField();
-		productPrice.setBounds(139, 62, 58, 20);
-		getContentPane().add(productPrice);
-		productPrice.setColumns(10);
+		productPriceField = new JTextField();
+		productPriceField.setBounds(139, 62, 58, 20);
+		getContentPane().add(productPriceField);
+		productPriceField.setColumns(10);
 
 		addProductButtun = new JButton("add");
 		addProductButtun.setBounds(194, 95, 70, 20);
@@ -163,8 +148,8 @@ public class TheView extends JFrame {
 		return productInfoField;
 	}
 
-	public JTextField getProductPrice() {
-		return productPrice;
+	public JTextField getProductPriceField() {
+		return productPriceField;
 	}
 
 	public JButton getAddProductButtun() {
@@ -189,5 +174,13 @@ public class TheView extends JFrame {
 
 	public JComboBox<String> getComboProductList() {
 		return comboProductList;
+	}
+
+	public JLabel getSalesTaxesLabel() {
+		return salesTaxesLabel;
+	}
+
+	public JLabel getTotalLabel() {
+		return totalLabel;
 	}
 }

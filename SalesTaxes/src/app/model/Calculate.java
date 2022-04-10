@@ -13,7 +13,6 @@ public class Calculate {
 	TaxFees taxeFees;
 
 	public TaxFees preform(Product product) {
-		//TaxFees taxes = null;
 		if (product != null) {
 
 			if (product.getInfo().contains("import") && isExept(product)) {

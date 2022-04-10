@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import app.model.Product;
 import app.model.Receipt;
 import app.model.TheModel;
@@ -15,9 +17,9 @@ public class Controller {
 
 	private TheModel model;
 	private TheView view;
-	// private List<Product> productList = new ArrayList<Product>();
-	private static final String PATH = "Output//Receipt.txt";
-	private static final File MYFILE = new File(PATH);
+
+	private static final String PATH = "Output//";
+	private static final File MYFILE = new File(PATH + "Receipt.txt");
 
 
 	public Controller(TheModel model, TheView view) {
@@ -31,7 +33,9 @@ public class Controller {
 		view.getAddProductButtun().addActionListener(e -> addProductToTextArea());
 
 		view.getDeleteProducktButton().addActionListener(e -> deleteProduct());
+
 		view.getPrintReceiptButton().addActionListener(e -> printReceipt());
+
 		view.getOpenReceiptFolder().addActionListener(e -> openFolder());
 
 
@@ -45,17 +49,17 @@ public class Controller {
 			MYFILE.createNewFile();
 			}
 			Desktop.getDesktop().open(new File("Output//"));
-			} catch (IOException e) {
-				e.printStackTrace();
-
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Folder doesen't Found or cannt be created!", "Error",
+					JOptionPane.ERROR_MESSAGE);
+				
 		}
 		
 	}
 
 	private void printReceipt() {
-		if (model.getProductList() != null) {
+		if (!model.getProductList().isEmpty()) {
 			try {
-
 				if (!MYFILE.exists()) {
 					MYFILE.getParentFile().mkdir();
 					MYFILE.createNewFile();
@@ -84,6 +88,8 @@ public class Controller {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			JOptionPane.showMessageDialog(null, "There is no products to print!", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 
 
@@ -96,20 +102,24 @@ public class Controller {
 
 	private void addProductToTextArea() {
 
-		if (!view.getProductInfoField().getText().equals("")) {
+		String productInfoField = view.getProductInfoField().getText();
+		String productPriceField = view.getProductPriceField().getText();
+		String productQuantityField = view.getQuantityTextField().getText();
 
-		double enteredPrice = Utilites.round2DigitAfterComma(Double.parseDouble(view.getProductPrice().getText()));
-		int quantity = Integer.parseInt(view.getQuantityTextField().getText());
+		if (!productInfoField.equals("") && !productPriceField.equals("") && !productQuantityField.equals("")) {
 
-		String productInfo = view.getProductInfoField().getText();
-		Product productToAdd = new Product(productInfo, enteredPrice);
+			double enteredPrice = Utilites.round2DigitAfterComma(Double.parseDouble(productPriceField));
+			int quantity = Integer.parseInt(productQuantityField);
+
+			// String productInfo = view.getProductInfoField().getText();
+			Product productToAdd = new Product(productInfoField, enteredPrice);
 		
 		double taxFees = model.getCalculater().preform(productToAdd).taxes(productToAdd);
 		double grossPrice = model.getCalculater().preform(productToAdd).grossPriceCalculation(productToAdd);
 
 
 
-		Product product = new Product(productInfo, enteredPrice, grossPrice, taxFees, quantity);
+		Product product = new Product(productInfoField, enteredPrice, grossPrice, taxFees, quantity);
 		
 		// add Product to the List
 		model.getProductList().add(product);
@@ -117,7 +127,26 @@ public class Controller {
 		// show Product on Display
 		view.getReceiptTextArea().setText(view.getReceiptTextArea().getText() + productOnDisplay(product));
 		
-		// show tax collected and total price now on Display
+		showSalestaxAndTotalOnDisplay();
+		
+		// add productinfo to the Combobox
+		view.getComboProductList().addItem(productInfoField);
+
+
+		view.getProductInfoField().setText("");
+		view.getProductPriceField().setText("");
+		view.getQuantityTextField().setText("");
+	} else {
+		JOptionPane.showMessageDialog(null, "You didnt enter any product or you did not fill all required fields!",
+				"Error", JOptionPane.ERROR_MESSAGE);
+	}
+	}
+
+	/**
+	 * show tax collected and total price now on Display
+	 */
+	private void showSalestaxAndTotalOnDisplay() {
+
 		double salesTaxes = 0;
 		double totalPrice = 0;
 		for (Product prod : model.getProductList()) {
@@ -128,16 +157,6 @@ public class Controller {
 		totalPrice = Utilites.round2DigitAfterComma(totalPrice);
 		view.getSalesTaxesLabel().setText(salesTaxes + "");
 		view.getTotalLabel().setText(totalPrice + "");
-		
-		// add productinfo to the Combobox
-		view.getComboProductList().addItem(productInfo);
-		// System.err.println(product.getInfo() + ": " + product.getNetPrice() + ", " +
-		// product.getGrossPrice());
-
-		view.getProductInfoField().setText("");
-		view.getProductPrice().setText("");
-		view.getQuantityTextField().setText("");
-	}
 	}
 
 	private void deleteProduct() {
@@ -166,7 +185,11 @@ public class Controller {
 
 			view.getSalesTaxesLabel().setText(collectedTaxes + "");
 			view.getTotalLabel().setText(totalNow + "");
+		} else {
+			JOptionPane.showMessageDialog(null, "There is nothing selected to delete!", "Error",
+					JOptionPane.ERROR_MESSAGE);
 		}
+
 	}
 
 	// to delete specifec Product from the List
