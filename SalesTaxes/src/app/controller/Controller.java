@@ -1,6 +1,8 @@
 package app.controller;
 
 import java.awt.Desktop;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -29,7 +31,10 @@ public class Controller {
 
 	public void initController() {
 
-
+		view.getProductPriceField().addKeyListener(writeOnlyDouble());
+		view.getQuantityTextField().addKeyListener(writeOnlyNumbers());
+		
+		
 		view.getAddProductButtun().addActionListener(e -> addProductToTextArea());
 
 		view.getDeleteProducktButton().addActionListener(e -> deleteProduct());
@@ -41,6 +46,48 @@ public class Controller {
 
 	}
 
+	private KeyListener writeOnlyDouble() {
+		KeyListener listener = new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent keys) {
+				char temp = keys.getKeyChar();
+				if (!(temp > 45 && temp < 58) || temp == 47) {
+						keys.consume();
+				}
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		};
+
+		return listener;
+	}
+
+	private KeyListener writeOnlyNumbers() {
+		KeyListener listener = new KeyListener() {
+
+			@Override
+			public void keyTyped(KeyEvent keys) {
+				char temp = keys.getKeyChar();
+				if (!(temp > 47 && temp < 58)) {
+					keys.consume();
+			}
+			}
+			@Override
+			public void keyPressed(KeyEvent e) {
+			}
+			@Override
+			public void keyReleased(KeyEvent e) {
+			}
+		};
+
+		return listener;
+	}
 
 	private void openFolder() {
 		try {
@@ -106,7 +153,7 @@ public class Controller {
 		String productPriceField = view.getProductPriceField().getText();
 		String productQuantityField = view.getQuantityTextField().getText();
 
-		if (!productInfoField.equals("") && !productPriceField.equals("") && !productQuantityField.equals("")) {
+		if (!productInfoField.isEmpty() && !productPriceField.isEmpty() && !productQuantityField.isEmpty()) {
 
 			double enteredPrice = Utilites.round2DigitAfterComma(Double.parseDouble(productPriceField));
 			int quantity = Integer.parseInt(productQuantityField);
