@@ -28,8 +28,9 @@ class TestCalculateClass {
 		double totalPrice = 0;
 
 		for (Product product : products) {
-			product.setTaxFees(calculate.preform(product).taxes(product));
-			product.setGrossPrice(calculate.preform(product).grossPriceCalculation(product));
+			calculate.preformCategory(product).preform(product);
+			product.setTaxFees(product.getTaxFees());
+			product.setGrossPrice(product.getGrossPrice());
 			collectedTaxes += product.getTaxFees();
 			totalPrice += product.getGrossPrice();
 		}
@@ -52,8 +53,9 @@ class TestCalculateClass {
 		double totalPrice = 0;
 
 		for (Product product : products) {
-			product.setTaxFees(calculate.preform(product).taxes(product));
-			product.setGrossPrice(calculate.preform(product).grossPriceCalculation(product));
+			calculate.preformCategory(product).preform(product);
+			product.setTaxFees(product.getTaxFees());
+			product.setGrossPrice(product.getGrossPrice());
 			collectedTaxes += product.getTaxFees();
 			totalPrice += product.getGrossPrice();
 		}
@@ -77,8 +79,9 @@ class TestCalculateClass {
 		double totalPrice = 0;
 
 		for (Product product : products) {
-			product.setTaxFees(calculate.preform(product).taxes(product));
-			product.setGrossPrice(calculate.preform(product).grossPriceCalculation(product));
+			calculate.preformCategory(product).preform(product);
+			product.setTaxFees(product.getTaxFees());
+			product.setGrossPrice(product.getGrossPrice());
 			collectedTaxes += product.getTaxFees();
 			totalPrice += product.getGrossPrice();
 		}

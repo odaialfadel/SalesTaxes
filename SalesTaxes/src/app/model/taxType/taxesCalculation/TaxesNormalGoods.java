@@ -7,27 +7,19 @@ import app.model.taxType.TaxFees;
 public class TaxesNormalGoods implements TaxFees {
 
 	@Override
-	public double taxes(Product product) {
+	public void preform(Product product) {
 
 		if (product != null) {
 			double taxes;
-			taxes = (product.getNetPrice() * 10) / 100;
-			return Utilites.round(taxes);
-		}
-		return 0;
-	}
-
-	@Override
-	public double grossPriceCalculation(Product product) {
-
-		if (product != null) {
 			double grossPrice;
-			grossPrice = product.getNetPrice() + taxes(product);
-			return Utilites.round2DigitAfterComma(grossPrice);
 
+			taxes = (product.getNetPrice() * 10) / 100;
+
+			grossPrice = product.getNetPrice() + Utilites.round(taxes);
+
+			product.setTaxFees(Utilites.round(taxes));
+			product.setGrossPrice(Utilites.round2DigitAfterComma(grossPrice));
 		}
-		return 0;
 	}
-
 
 }

@@ -25,7 +25,8 @@ class TestTheModel {
 
 		double total = 0;
 		for (Product product : model.getProductList()) {
-			total += model.getCalculater().preform(product).grossPriceCalculation(product);
+			model.getCalculater().preformCategory(product).preform(product);
+			total += product.getGrossPrice();
 		}
 		assertEquals(81.13, total, 0);
 	}
@@ -39,12 +40,11 @@ class TestTheModel {
 		products.add(new Product("somthing", 34.00));
 		products.add(new Product("soso", 15.42));
 		model.setProductList(products);
-		products.get(0)
-				.setGrossPrice(
-						model.getCalculater().preform(products.get(0)).grossPriceCalculation(products.get(0)) * 23);
 
-		products.get(1).setGrossPrice(
-				model.getCalculater().preform(products.get(1)).grossPriceCalculation(products.get(1)) * 0);
+		model.getCalculater().preformCategory(products.get(0)).preform(products.get(0));
+		products.get(0).setGrossPrice(products.get(0).getGrossPrice() * 23);
+		model.getCalculater().preformCategory(products.get(1)).preform(products.get(1));
+		products.get(1).setGrossPrice(products.get(1).getGrossPrice() * 0);
 
 
 

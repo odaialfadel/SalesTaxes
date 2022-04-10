@@ -114,8 +114,10 @@ public class Controller {
 			// String productInfo = view.getProductInfoField().getText();
 			Product productToAdd = new Product(productInfoField, enteredPrice);
 		
-		double taxFees = model.getCalculater().preform(productToAdd).taxes(productToAdd);
-		double grossPrice = model.getCalculater().preform(productToAdd).grossPriceCalculation(productToAdd);
+			model.getCalculater().preformCategory(productToAdd).preform(productToAdd);
+
+			double taxFees = productToAdd.getTaxFees();
+			double grossPrice = productToAdd.getGrossPrice();
 
 
 
